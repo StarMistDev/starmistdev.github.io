@@ -3,135 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Config Profile Downloader</title>
+    <title>Starmist</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
-            background: #f5f5f7;
-            color: #1d1d1f;
+            padding: 0;
         }
-        .container {
-            max-width: 800px;
+        
+        :root {
+            --black: #000;
+            --white: #fff;
+            --gray: #777;
+            --light-gray: #f7f7f7;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--black);
+            background-color: var(--white);
+            font-weight: 300;
+            max-width: 1000px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
         }
+        
+        a {
+            color: var(--black);
+            text-decoration: none;
+        }
+        
+        /* Typography */
         h1 {
-            text-align: center;
-            color: #0066cc;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 2rem 0;
+            letter-spacing: -0.5px;
         }
-        .download-section {
-            text-align: center;
-            margin: 30px 0;
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 2rem 0 1.5rem;
+            letter-spacing: -0.5px;
         }
-        .download-button {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 16px;
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        /* Layout */
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            font-size: 1.8rem;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        section {
+            padding: 4rem 0;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            border-top: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .hero-content {
+            max-width: 70%;
+        }
+        
+        .hero h1 {
+            max-width: 24rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            max-width: 32rem;
+            color: var(--gray);
+        }
+        
+        .hero-cta {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-right: 2rem;
+        }
+        
+        /* Services */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service {
+            margin-bottom: 1rem;
+        }
+        
+        .service h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Call to Action */
+        .cta {
+            text-align: center;
+        }
+        
+        .button {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.7rem 1.2rem;
+            border: 1px solid var(--black);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
-        .download-button:hover {
-            background: #004499;
+        
+        .button:hover {
+            background: #333;
         }
-        .instructions {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
+        
+        .hero-cta .button {
+            white-space: normal;
+            max-width: 180px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Mobile Config Profile Downloader</h1>
-        <div class="download-section">
-            <button class="download-button" onclick="downloadProfile()">Download Profile</button>
+    <header>
+        <div class="logo">starmist</div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Mobile Apps development consultancy</h1>
+            <p>We create thoughtful mobile experiences that help businesses connect with their users. Our approach is strategic, focused, and built on technical excellence.</p>
         </div>
-        <div class="instructions">
-            <h2>Instructions:</h2>
-            <ol>
-                <li>Click the "Download Profile" button above</li>
-                <li>Open the downloaded file on your iOS device</li>
-                <li>Follow the prompts to install the profile</li>
-                <li>Go to Settings > General > VPN & Device Management to verify the installation</li>
-            </ol>
+        <div class="hero-cta">
+            <a href="mailto:bookings@starmistdev.com?subject=FREE%20Consultancy%20Request&body=Hey%2C%20could%20you%20please%20send%20me%20the%20next%20available%20date%20for%20the%20consultation%3F" class="button">Book a <strong>FREE</strong> consultation</a>
         </div>
-    </div>
+    </section>
+    
+    <section id="services">
+        <h2>Services</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Mobile Development</h3>
+                <p>Native and cross-platform solutions for iOS and Android.</p>
+            </div>
+            <div class="service">
+                <h3>Custom Solutions</h3>
+                <p>Tailored applications designed for specific business challenges.</p>
+            </div>
+            <div class="service">
+                <h3>App Strategy</h3>
+                <p>Planning, market analysis, and go-to-market strategy development.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="cta">
+        <h2>Work with us</h2>
+        <p>Let's discuss how we can help you achieve your mobile application objectives.</p>
+        <a href="mailto:bookings@starmistdev.com?subject=FREE%20Consultancy%20Request&body=Hey%2C%20could%20you%20please%20send%20me%20the%20next%20available%20date%20for%20the%20consultation%3F" class="button">Book a <strong>FREE</strong> consultation</a>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div>&copy; <span id="current-year"></span> Starmist. All rights reserved.</div>
+        </div>
+    </footer>
 
     <script>
-        const mobileConfigContent = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadDescription</key>
-            <string>Add in order to connect to WiFi</string>
-            <key>PayloadDisplayName</key>
-            <string>WiFi Settings</string>
-            <key>PayloadIdentifier</key>
-            <string>com.home.wifi</string>
-            <key>PayloadType</key>
-            <string>com.apple.wifi.managed</string>
-            <key>PayloadUUID</key>
-            <string>$(uuidgen)</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>EncryptionType</key>
-            <string>WPA2</string>
-            <key>HIDDEN_NETWORK</key>
-            <false/>
-            <key>Password</key>
-            <string>YOUR_WIFI_PASSWORD</string>
-            <key>ProxyType</key>
-            <string>None</string>
-            <key>SSID_STR</key>
-            <string>YOUR_WIFI_NAME</string>
-            <key>AutoJoin</key>
-            <true/>
-        </dict>
-    </array>
-    <key>PayloadDescription</key>
-    <string>Installs WiFi configuration</string>
-    <key>PayloadDisplayName</key>
-    <string>WiFi Configuration</string>
-    <key>PayloadIdentifier</key>
-    <string>com.example.profile</string>
-    <key>PayloadOrganization</key>
-    <string>Example Organization</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadUUID</key>
-    <string>$(uuidgen)</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-</dict>
-</plist>`;
-
-        function downloadProfile() {
-            const blob = new Blob([mobileConfigContent], { type: 'application/x-apple-aspen-config' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'profile.mobileconfig';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-        }
+        // Update copyright year automatically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html> 

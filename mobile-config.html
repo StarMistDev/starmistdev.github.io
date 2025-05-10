@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Config Profile Downloader</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f7;
+            color: #1d1d1f;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 30px;
+        }
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .download-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .download-button:hover {
+            background: #004499;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mobile Config Profile Downloader</h1>
+        <div class="download-section">
+            <button class="download-button" onclick="downloadProfile()">Download Profile</button>
+        </div>
+        <div class="instructions">
+            <h2>Instructions:</h2>
+            <ol>
+                <li>Click the "Download Profile" button above</li>
+                <li>Open the downloaded file on your iOS device</li>
+                <li>Follow the prompts to install the profile</li>
+                <li>Go to Settings > General > VPN & Device Management to verify the installation</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const mobileConfigContent = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Add in order to connect to WiFi</string>
+            <key>PayloadDisplayName</key>
+            <string>WiFi Settings</string>
+            <key>PayloadIdentifier</key>
+            <string>com.home.wifi</string>
+            <key>PayloadType</key>
+            <string>com.apple.wifi.managed</string>
+            <key>PayloadUUID</key>
+            <string>$(uuidgen)</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>EncryptionType</key>
+            <string>WPA2</string>
+            <key>HIDDEN_NETWORK</key>
+            <false/>
+            <key>Password</key>
+            <string>YOUR_WIFI_PASSWORD</string>
+            <key>ProxyType</key>
+            <string>None</string>
+            <key>SSID_STR</key>
+            <string>YOUR_WIFI_NAME</string>
+            <key>AutoJoin</key>
+            <true/>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Installs WiFi configuration</string>
+    <key>PayloadDisplayName</key>
+    <string>WiFi Configuration</string>
+    <key>PayloadIdentifier</key>
+    <string>com.example.profile</string>
+    <key>PayloadOrganization</key>
+    <string>Example Organization</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>$(uuidgen)</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>`;
+
+        function downloadProfile() {
+            const blob = new Blob([mobileConfigContent], { type: 'application/x-apple-aspen-config' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'profile.mobileconfig';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html> 
